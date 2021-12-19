@@ -1,0 +1,10 @@
+//
+//  Localizable.strings
+//  sello
+//
+
+//MARK: - SignInViewController
+"sign_inView_title" = "Sello";
+"sign_in_login_placeholder" = "Email или номер телефона";
+"sign_in_password_placeholder" = "Пароль";
+"sign_in_button_title" = "Войти";

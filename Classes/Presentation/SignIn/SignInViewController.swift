@@ -20,9 +20,11 @@ final class SignInScreenBuilder: ScreenBuilder {
     }
 }
 
-final class SignInViewController: SEViewController {
+final class SignInViewController: UIViewController {
+    
     lazy private var ui = configureUI()
     private let disposeBag = DisposeBag()
+    private let didTapSubmitButton = BehaviorRelay<SignInViewModel.Inputs?>(value: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,34 +40,39 @@ final class SignInViewController: SEViewController {
         ui.usernameInput.pin
             .hCenter()
             .below(of: ui.logoLabel)
-            .width(ui.logoLabel.bounds.width - 40)
-            .height(50)
+            .width(ui.logoLabel.bounds.width - Constants.widthMargin)
+            .height(Constants.height)
         
         ui.passwordInput.pin
             .below(of: ui.usernameInput, aligned: .left)
-            .marginTop(20)
-            .width(ui.logoLabel.bounds.width - 40)
+            .marginTop(Constants.marginTop)
+            .width(ui.logoLabel.bounds.width - Constants.widthMargin)
             .height(ui.usernameInput.bounds.height)
         
         ui.backViewSubmitButton.pin
             .below(of: ui.passwordInput, aligned: .left)
-            .marginTop(20)
-            .width(ui.logoLabel.bounds.width - 40)
+            .marginTop(Constants.marginTop)
+            .width(ui.logoLabel.bounds.width - Constants.widthMargin)
             .height(ui.usernameInput.bounds.height)
         
         ui.submitButton.pin
-            .width(ui.logoLabel.bounds.width - 40)
+            .width(ui.logoLabel.bounds.width - Constants.widthMargin)
             .height(ui.usernameInput.bounds.height)
         
         ui.containerStackView.pin
             .hCenter()
             .below(of: ui.submitButton)
-            .marginTop(32)
+            .marginTop(Constants.extraMarginTop)
             .width(50%)
-            .height(40)
+            .height(Constants.height)
         
         setGradientBackground(view: ui.backView)
         setButtonGradientBackground(view: ui.backViewSubmitButton)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 }
 
@@ -73,12 +80,28 @@ extension SignInViewController: ViewType {
     typealias ViewModel = SignInViewModel
     
     var bindings: ViewModel.Bindings {
-        return .init(didTapSubmitButton: ui.submitButton.rx.tap.asSignal().map { _ in
-            SignInViewModel.Inputs.init(login: .just(.empty), password: .just(.empty))
-        })
+        .init(
+            didTapSubmitButton: didTapSubmitButton
+                .asSignal(onErrorSignalWith: .empty())
+                .compactMap { $0 }
+        )
     }
     
     func bind(to viewModel: ViewModel) {
+        
+        ui.submitButton.rx.tap
+            .asSignal(onErrorSignalWith: .empty())
+            .withLatestFrom(Signal.combineLatest(
+                ui.usernameInput.rx.value
+                    .changed
+                    .asSignal(),
+                ui.passwordInput.rx.value
+                    .changed
+                    .asSignal()
+            )
+            .compactMap { SignInViewModel.Inputs(login: $0, password: $1) })
+            .emit(to: didTapSubmitButton)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -102,7 +125,7 @@ private extension SignInViewController {
         }
         
         let logoLabel = UILabel().setup {
-            $0.text = R.string.localizable.sign_inView_title()
+            $0.text = R.string.localizable.sign_in_view_title()
             $0.font = .systemMedium150
             $0.textColor = .white
             backView.addSubview($0)
@@ -113,7 +136,12 @@ private extension SignInViewController {
             $0.layer.cornerRadius = 20.0
             $0.placeholder = R.string.localizable.sign_in_login_placeholder()
             $0.font = .systemRegular15
-            $0.leftView = UIView(frame: .init(x: 0, y: 0, width: 10, height: 50))
+            $0.leftView = UIView(frame: .init(
+                x: 0,
+                y: 0,
+                width: Constants.spaceWidth,
+                height: Constants.height
+            ))
             $0.leftViewMode = .always
             backView.addSubview($0)
         }
@@ -123,7 +151,12 @@ private extension SignInViewController {
             $0.layer.cornerRadius = 20.0
             $0.placeholder = R.string.localizable.sign_in_password_placeholder()
             $0.font = .systemRegular15
-            $0.leftView = UIView(frame: .init(x: 0, y: 0, width: 10, height: 50))
+            $0.leftView = UIView(frame: .init(
+                x: 0,
+                y: 0,
+                width: Constants.spaceWidth,
+                height: Constants.height
+            ))
             $0.leftViewMode = .always
             backView.addSubview($0)
         }
@@ -132,17 +165,17 @@ private extension SignInViewController {
             $0.setImage(R.image.facebook(), for: .normal)
             backView.addSubview($0)
         }
-        
+
         let googleButton = UIButton().setup {
             $0.setImage(R.image.google(), for: .normal)
             backView.addSubview($0)
         }
-        
+
         let telegramButton = UIButton().setup {
             $0.setImage(R.image.telegramm(), for: .normal)
             backView.addSubview($0)
         }
-        
+
         let instagramButton = UIButton().setup {
             $0.setImage(R.image.instagramm(), for: .normal)
             backView.addSubview($0)
@@ -160,7 +193,7 @@ private extension SignInViewController {
             $0.alignment = .center
             $0.distribution = .fillEqually
             $0.spacing = 4.0
-            
+
             backView.addSubview($0)
         }
         
@@ -204,5 +237,15 @@ private extension SignInViewController {
         gradientLayer.shadowRadius = 20.0
         gradientLayer.shadowColor = UIColor.black.cgColor
         view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+}
+
+private extension SignInViewController {
+    enum Constants {
+        static let widthMargin: CGFloat = 40
+        static let marginTop: CGFloat = 20
+        static let extraMarginTop: CGFloat = 32
+        static let height: CGFloat = 50
+        static let spaceWidth: CGFloat = 20
     }
 }

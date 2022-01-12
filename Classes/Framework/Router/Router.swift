@@ -49,18 +49,6 @@ class Router {
         }
     }
     
-    func pop(completion: @escaping () -> ()) {
-        pop()
-        
-        if let coordinator = viewController?.navigationController?.transitionCoordinator {
-            coordinator.animate(alongsideTransition: nil) { _ in
-                completion()
-            }
-        } else {
-            completion()
-        }
-    }
-    
     func popToRootViewController() {
         viewController?.navigationController?.popToRootViewController(animated: true)
     }

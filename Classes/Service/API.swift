@@ -16,7 +16,6 @@ enum RequestType: String {
 }
 
 class APIURLSession: URLSession, URLSessionDelegate {
-    static let apiShared = APIURLSession()
     
     override func dataTask(
         with request: URLRequest,
@@ -69,7 +68,7 @@ class API<DataType: RawData> {
     
     static func performRequest(_ request: URLRequest) -> Observable<Response> {
 
-        let observable = APIURLSession.apiShared.rx.response(request: request)
+        let observable = APIURLSession.shared.rx.response(request: request)
             .flatMapLatest { response, data -> Observable<Response> in
                 let parsed = parse(data: data, response: response)
                 return parsed

@@ -15,7 +15,7 @@ final class SignInRouter: RouterType {
         router = Router(transitionHandler: transitionHandler)
     }
     
-    func pop() {
-        router.pop()
+    func popToRootViewController() {
+        router.show(HomeProductListViewScreenBuilder.self, inputs: .init())
     }
 }

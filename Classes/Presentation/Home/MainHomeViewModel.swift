@@ -1,5 +1,5 @@
 //
-//  HomeProductListViewModel.swift
+//  MainHomeViewModel.swift
 //  sello
 //
 //  Created by user on 03.01.2022.
@@ -8,12 +8,12 @@
 import RxSwift
 import RxCocoa
 
-struct HomeProductListViewModel {
+struct MainHomeViewModel {
     
     let disposables: Disposable
 }
 
-extension HomeProductListViewModel: ViewModelType {
+extension MainHomeViewModel: ViewModelType {
     
     typealias Routes = SignInRouter
     
@@ -31,9 +31,9 @@ extension HomeProductListViewModel: ViewModelType {
         binding: Bindings,
         dependency: Dependencies,
         router: Routes
-    ) -> HomeProductListViewModel {
+    ) -> MainHomeViewModel {
         
-        return HomeProductListViewModel(
+        return MainHomeViewModel(
             disposables: CompositeDisposable(disposables: [])
         )
     }

@@ -29,12 +29,28 @@ extension UIFont {
         return .systemRegular(of: 15)
     }
     
+    static var systemRegular17: UIFont {
+        return .systemRegular(of: 17)
+    }
+    
     static var systemRegular150: UIFont {
         return .systemRegular(of: 150)
     }
     
     static func systemMedium(of size: CGFloat) -> UIFont {
         return systemFont(ofSize: size, weight: .medium)
+    }
+    
+    static func systemLight(of size: CGFloat) -> UIFont {
+        return systemFont(ofSize: size, weight: .light)
+    }
+    
+    static func systemBold(of size: CGFloat) -> UIFont {
+        return systemFont(ofSize: size, weight: .bold)
+    }
+    
+    static var systemBold15: UIFont {
+        return .systemBold(of: 15)
     }
     
     static var systemMedium150: UIFont {

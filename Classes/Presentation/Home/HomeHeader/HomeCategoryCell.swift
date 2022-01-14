@@ -87,7 +87,7 @@ private extension HomeCategoryCell {
 
 private extension HomeCategoryCell {
     private enum Constants {
-        static let iconSize: CGFloat = 24
+        static let iconSize: CGFloat = 30
         static let cellSize: CGFloat = 80
     }
 }

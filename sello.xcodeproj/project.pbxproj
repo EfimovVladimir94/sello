@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		32F19F294E8B15D818134D30 /* Pods_sello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485F1DD515FDB7848DA5B4CA /* Pods_sello.framework */; };
-		CE13A01627830FB800FDEEC8 /* HomeProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13A01527830FB800FDEEC8 /* HomeProductListViewController.swift */; };
-		CE13A01B2783116000FDEEC8 /* HomeProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13A01A2783116000FDEEC8 /* HomeProductListViewModel.swift */; };
+		CE081E7427901B3A00735EE2 /* HomeProductListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE081E7327901B3A00735EE2 /* HomeProductListCollectionView.swift */; };
+		CE081E7627901BE400735EE2 /* HomeProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE081E7527901BE400735EE2 /* HomeProductListCell.swift */; };
+		CE13A01627830FB800FDEEC8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13A01527830FB800FDEEC8 /* MainViewController.swift */; };
+		CE13A01B2783116000FDEEC8 /* MainHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13A01A2783116000FDEEC8 /* MainHomeViewModel.swift */; };
 		CE13A01E278312F100FDEEC8 /* HomeCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13A01D278312F100FDEEC8 /* HomeCategoryViewController.swift */; };
 		CE191915276B1E2F00959489 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE191914276B1E2F00959489 /* AuthService.swift */; };
 		CE191919276B42EE00959489 /* JSONAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE191918276B42EE00959489 /* JSONAPI.swift */; };
@@ -46,8 +48,10 @@
 /* Begin PBXFileReference section */
 		485F1DD515FDB7848DA5B4CA /* Pods_sello.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sello.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		912C6CC630DBA6D8FF9025DD /* Pods-sello.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sello.debug.xcconfig"; path = "Target Support Files/Pods-sello/Pods-sello.debug.xcconfig"; sourceTree = "<group>"; };
-		CE13A01527830FB800FDEEC8 /* HomeProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductListViewController.swift; sourceTree = "<group>"; };
-		CE13A01A2783116000FDEEC8 /* HomeProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductListViewModel.swift; sourceTree = "<group>"; };
+		CE081E7327901B3A00735EE2 /* HomeProductListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductListCollectionView.swift; sourceTree = "<group>"; };
+		CE081E7527901BE400735EE2 /* HomeProductListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductListCell.swift; sourceTree = "<group>"; };
+		CE13A01527830FB800FDEEC8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CE13A01A2783116000FDEEC8 /* MainHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeViewModel.swift; sourceTree = "<group>"; };
 		CE13A01D278312F100FDEEC8 /* HomeCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryViewController.swift; sourceTree = "<group>"; };
 		CE191914276B1E2F00959489 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CE191918276B42EE00959489 /* JSONAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONAPI.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 		CE6355CD2785B3FB000B1DC9 /* HomeProductList */ = {
 			isa = PBXGroup;
 			children = (
+				CE081E7327901B3A00735EE2 /* HomeProductListCollectionView.swift */,
+				CE081E7527901BE400735EE2 /* HomeProductListCell.swift */,
 			);
 			path = HomeProductList;
 			sourceTree = "<group>";
@@ -225,8 +231,8 @@
 				CE13A01C2783127A00FDEEC8 /* HomeHeader */,
 				CE6355CD2785B3FB000B1DC9 /* HomeProductList */,
 				CE6A4DB82770FCF900DE705D /* HomeRouter.swift */,
-				CE13A01527830FB800FDEEC8 /* HomeProductListViewController.swift */,
-				CE13A01A2783116000FDEEC8 /* HomeProductListViewModel.swift */,
+				CE13A01527830FB800FDEEC8 /* MainViewController.swift */,
+				CE13A01A2783116000FDEEC8 /* MainHomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -460,11 +466,13 @@
 				CEF221C72786F20C0086CBED /* HomeCategoryCell.swift in Sources */,
 				CE42F03D27536B8D003397A4 /* Router.swift in Sources */,
 				CE702470278AD410001DC7D5 /* UICellExtension.swift in Sources */,
-				CE13A01B2783116000FDEEC8 /* HomeProductListViewModel.swift in Sources */,
+				CE13A01B2783116000FDEEC8 /* MainHomeViewModel.swift in Sources */,
 				CE78824C275CCCAE00834CD1 /* ScreenBuilder.swift in Sources */,
+				CE081E7427901B3A00735EE2 /* HomeProductListCollectionView.swift in Sources */,
 				CE6A4DB92770FCF900DE705D /* HomeRouter.swift in Sources */,
 				CE42F040275371D3003397A4 /* SignInRouter.swift in Sources */,
 				CE191919276B42EE00959489 /* JSONAPI.swift in Sources */,
+				CE081E7627901BE400735EE2 /* HomeProductListCell.swift in Sources */,
 				CE42F046275375F9003397A4 /* SignInViewModel.swift in Sources */,
 				CE7236B527623CDE00D6D54C /* StringExtension.swift in Sources */,
 				CE6C2A3127649711000B6E5F /* NSObject+Setupable.swift in Sources */,
@@ -476,7 +484,7 @@
 				CE19191F276B44F500959489 /* APIError.swift in Sources */,
 				CE42F05227538AA4003397A4 /* R.generated.swift in Sources */,
 				CE6C2A2F27648DCF000B6E5F /* FontExtension.swift in Sources */,
-				CE13A01627830FB800FDEEC8 /* HomeProductListViewController.swift in Sources */,
+				CE13A01627830FB800FDEEC8 /* MainViewController.swift in Sources */,
 				CE64D00D278424E8009CD6DC /* HomeCategoryViewModel.swift in Sources */,
 				CE19191D276B439A00959489 /* Parser.swift in Sources */,
 				CE19191B276B433F00959489 /* API.swift in Sources */,

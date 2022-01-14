@@ -51,7 +51,7 @@ final class HomeCategoryViewController: UIViewController {
         ui.collectionView.pin
             .below(of: ui.findInput)
             .marginTop(Constants.margin)
-            .left(Constants.margin)
+            .left(Constants.marginLeft)
             .width(view.bounds.width)
             .height(Constants.collectionViewHeight)
         

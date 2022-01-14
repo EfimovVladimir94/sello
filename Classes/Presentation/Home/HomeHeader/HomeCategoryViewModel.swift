@@ -26,6 +26,7 @@ extension HomeCategoryViewModel: ViewModelType {
     
     enum Constants {
         static let margin: CGFloat = 20
+        static let marginLeft: CGFloat = 10
         static let marginTop: CGFloat = 60
         static let imageSize: CGFloat = 24
         static let inputHeight: CGFloat = 40

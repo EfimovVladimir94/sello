@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
 
 final class SignInRouter: RouterType {
@@ -16,6 +15,6 @@ final class SignInRouter: RouterType {
     }
     
     func popToRootViewController() {
-        router.show(HomeProductListViewScreenBuilder.self, inputs: .init())
+        router.show(MainViewScreenBuilder.self, inputs: .init())
     }
 }

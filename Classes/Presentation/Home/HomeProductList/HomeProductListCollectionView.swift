@@ -1,5 +1,5 @@
 //
-//  CategoryCollectionView.swift
+//  HomeProductListCollectionView.swift
 //  sello
 //
 //
@@ -7,8 +7,8 @@
 import RxSwift
 import RxCocoa
 
-final class HomeCategoryCollectionView: UICollectionView {
-    fileprivate var _items: [HomeCategoryCell.Input] = []
+final class HomeProductListCollectionView: UICollectionView {
+    fileprivate var _items: [HomeProductListCell.Input] = []
     private let didSelectItem = PublishRelay<IndexPath>()
     
     struct Output {
@@ -16,12 +16,7 @@ final class HomeCategoryCollectionView: UICollectionView {
     }
     
     struct Input {
-        let items: [HomeCategoryCell.Input]
-    }
-    
-    enum Constants {
-        static let cellWidth = 80
-        static let cellHeight = 120
+        let items: [HomeProductListCell.Input]
     }
     
     func bind(_ configuration: Input) -> Output {
@@ -32,7 +27,7 @@ final class HomeCategoryCollectionView: UICollectionView {
     }
 }
 
-extension HomeCategoryCollectionView: UICollectionViewDataSource,
+extension HomeProductListCollectionView: UICollectionViewDataSource,
                                       UICollectionViewDelegate,
                                       UICollectionViewDelegateFlowLayout {
     
@@ -51,14 +46,17 @@ extension HomeCategoryCollectionView: UICollectionViewDataSource,
         
         let item = _items[indexPath.row]
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: HomeCategoryCell.self.id,
+            withReuseIdentifier: HomeProductListCell.self.id,
             for: indexPath
-        ) as! HomeCategoryCell
+        ) as! HomeProductListCell
         
         cell.configure(
             .init(
-                nameLabel: item.nameLabel,
-                iconImage: item.iconImage
+                image: item.image,
+                title: item.title,
+                subTitle: item.subTitle,
+                description: item.description,
+                rightImage: item.rightImage
             )
         )
         return cell
@@ -77,6 +75,9 @@ extension HomeCategoryCollectionView: UICollectionViewDataSource,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: Constants.cellWidth, height: Constants.cellHeight)
+        return CGSize(
+            width: collectionView.bounds.width / 2,
+            height: collectionView.bounds.height * 0.3
+        )
     }
 }

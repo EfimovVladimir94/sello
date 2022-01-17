@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  HomeProductsViewController.swift
 //  sello
 //
 //
@@ -9,8 +9,8 @@ import RxCocoa
 import UIKit
 import PinLayout
 
-final class MainViewScreenBuilder: ScreenBuilder {
-    typealias VC = MainViewController
+final class HomeProductsScreenBuilder: ScreenBuilder {
+    typealias VC = HomeProductsViewController
     
     var dependencies: VC.ViewModel.Dependencies {
         VC.ViewModel.Dependencies(
@@ -18,7 +18,7 @@ final class MainViewScreenBuilder: ScreenBuilder {
     }
 }
 
-final class MainViewController: UIViewController {
+final class HomeProductsViewController: UIViewController {
     
     lazy private var ui = configureUI()
     private let disposeBag = DisposeBag()
@@ -34,20 +34,16 @@ final class MainViewController: UIViewController {
         
         ui.collectionView.pin
             .below(of: ui.category)
-            .marginTop(30)
             .horizontally()
             .height(view.bounds.height)
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setToolbarHidden(false, animated: true)
+        ui.collectionView.contentInset = .make(bottom: view.bounds.height / 3)
+        
     }
 }
 
-extension MainViewController: ViewType {
-    typealias ViewModel = MainHomeViewModel
+extension HomeProductsViewController: ViewType {
+    typealias ViewModel = HomeProductsViewModel
     
     var bindings: ViewModel.Bindings {
         .init(
@@ -60,53 +56,53 @@ extension MainViewController: ViewType {
             .bind(.init(items: [
                 
                 .init(
-                    image: R.image.demo() ?? UIImage(),
+                    image: R.image.demo(),
                     title: "Щенок немецкой овчарки",
                     subTitle: "3000₾",
                     description: "Тбилиси, Ваке. 10 ноября, 14:21",
-                    rightImage: R.image.favourite() ?? UIImage()
+                    rightImage: R.image.favourite()
                 ),
                 .init(
-                    image: R.image.demo1() ?? UIImage(),
+                    image: R.image.demo1(),
                     title: "Клетка для грызунов",
                     subTitle: "3000₾",
                     description: "Тбилиси, Ваке. 10 ноября, 14:21",
-                    rightImage: R.image.favourite() ?? UIImage()
+                    rightImage: R.image.favourite()
                 ),
                 .init(
-                    image: R.image.demo2() ?? UIImage(),
+                    image: R.image.demo2(),
                     title: "Костюм чумного доктора",
                     subTitle: "3000₾",
                     description: "Тбилиси, Ваке. 10 ноября, 14:21",
-                    rightImage: R.image.favourite() ?? UIImage()
+                    rightImage: R.image.favourite()
                 ),
                 .init(
-                    image: R.image.demo3() ?? UIImage(),
+                    image: R.image.demo3(),
                     title: "Черепаха с аквариумом",
                     subTitle: "3000₾",
                     description: "Тбилиси, Ваке. 10 ноября, 14:21",
-                    rightImage: R.image.favourite() ?? UIImage()
+                    rightImage: R.image.favourite()
                 ),
                 .init(
-                    image: R.image.demo() ?? UIImage(),
+                    image: R.image.demo(),
                     title: "Щенок немецкой овчарки",
                     subTitle: "3000₾",
                     description: "Тбилиси, Ваке. 10 ноября, 14:21",
-                    rightImage: R.image.favourite() ?? UIImage()
+                    rightImage: R.image.favourite()
                 ),
                 .init(
-                    image: R.image.demo1() ?? UIImage(),
+                    image: R.image.demo1(),
                     title: "Клетка для грызунов",
                     subTitle: "3000₾",
                     description: "Тбилиси, Ваке. 10 ноября, 14:21",
-                    rightImage: R.image.favourite() ?? UIImage()
+                    rightImage: R.image.favourite()
                 ),
                 .init(
-                    image: R.image.demo2() ?? UIImage(),
+                    image: R.image.demo2(),
                     title: "Костюм чумного доктора",
                     subTitle: "3000₾",
                     description: "Тбилиси, Ваке. 10 ноября, 14:21",
-                    rightImage: R.image.favourite() ?? UIImage()
+                    rightImage: R.image.favourite()
                 )
             ]))
         
@@ -116,7 +112,7 @@ extension MainViewController: ViewType {
     }
 }
 
-private extension MainViewController {
+private extension HomeProductsViewController {
     
     struct UI {
         let category: UIView
@@ -125,6 +121,9 @@ private extension MainViewController {
     
     func configureUI() -> UI {
         view.backgroundColor = .white
+        tabBarItem.title = R.string.localizable.tabbar_home()
+        tabBarItem.image = R.image.home()
+        tabBarItem.image?.withTintColor(.lightGray)
         
         let category = HomeCategoryScreenBuilder().build(())
         addChild(category)

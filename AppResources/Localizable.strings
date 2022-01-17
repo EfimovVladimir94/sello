@@ -11,3 +11,11 @@
 
 //MARK: - HomeCategoryViewController
 "category_find_input_placeholder" = "Поиск в Тбилиси";
+
+//MARK: - TabBar
+"tabbar_home" = "Поиск";
+"tabbar_favourite" = "Избранное";
+"tabbar_annonce" = "Объявления";
+"tabbar_chat" = "Сообщения";
+"tabbar_profile" = "Профиль";
+

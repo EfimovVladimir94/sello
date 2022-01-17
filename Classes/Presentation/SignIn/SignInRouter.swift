@@ -15,6 +15,6 @@ final class SignInRouter: RouterType {
     }
     
     func popToRootViewController() {
-        router.show(MainViewScreenBuilder.self, inputs: .init())
+        router.show(MainTabBarScreenBuilder.self, inputs: .init())
     }
 }

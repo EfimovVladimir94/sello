@@ -27,3 +27,9 @@ extension ViewType {
         return Self.init()
     }
 }
+
+extension ViewType where ViewModel.Bindings == Void {
+    var bindings: Void {
+        return ()
+    }
+}

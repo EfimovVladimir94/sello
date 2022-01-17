@@ -13,6 +13,10 @@ extension UIFont {
         return systemFont(ofSize: size, weight: .regular)
     }
     
+    static var systemRegular7: UIFont {
+        return .systemRegular(of: 7)
+    }
+    
     static var systemRegular11: UIFont {
         return .systemRegular(of: 11)
     }

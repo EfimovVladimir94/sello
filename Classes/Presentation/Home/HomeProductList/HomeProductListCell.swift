@@ -10,11 +10,11 @@ import RxCocoa
 final class HomeProductListCell: UICollectionViewCell {
     
     struct Input {
-        let image: UIImage
+        let image: UIImage?
         let title: String
         let subTitle: String
         let description: String
-        let rightImage: UIImage
+        let rightImage: UIImage?
     }
     
     private lazy var ui = configureUI()
@@ -44,6 +44,7 @@ final class HomeProductListCell: UICollectionViewCell {
         ui.imageView.pin
             .top()
             .horizontally()
+            .marginTop(Constants.spaceMargin)
             .size(CGSize(
                 width: contentView.bounds.width,
                 height: contentView.bounds.height/2
@@ -58,6 +59,7 @@ final class HomeProductListCell: UICollectionViewCell {
         ui.title.pin
             .left(of: ui.rightImage, aligned: .center)
             .left(Constants.margin)
+            .marginTop(Constants.margin)
             .sizeToFit(.width)
         
         ui.subTitle.pin
@@ -91,6 +93,7 @@ private extension HomeProductListCell {
     private func configureUI() -> UI {
         
         let imageView = UIImageView().setup {
+            $0.contentMode = .scaleAspectFill
             contentView.addSubview($0)
         }
         
@@ -131,5 +134,6 @@ private extension HomeProductListCell {
     private enum Constants {
         static let iconSize: CGFloat = 24
         static let margin: CGFloat = 10
+        static let spaceMargin: CGFloat = 30
     }
 }

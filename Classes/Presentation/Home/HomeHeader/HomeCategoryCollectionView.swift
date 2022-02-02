@@ -53,7 +53,11 @@ extension HomeCategoryCollectionView: UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: HomeCategoryCell.self.id,
             for: indexPath
-        ) as! HomeCategoryCell
+        ) as? HomeCategoryCell
+        
+        guard let cell = cell else {
+            return .init()
+        }
         
         cell.configure(
             .init(

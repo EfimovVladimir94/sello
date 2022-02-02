@@ -100,7 +100,11 @@ extension SignInViewController: ViewType {
                     .asSignal()
             )
             .compactMap { SignInViewModel.Inputs(login: $0, password: $1) })
-            .emit(to: didTapSubmitButton)
+            .emit(onNext: { _ in
+                let vc = MainTabBarScreenBuilder().build(.init())
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            })
             .disposed(by: disposeBag)
     }
 }

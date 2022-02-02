@@ -11,6 +11,11 @@ final class HomeProductListCollectionView: UICollectionView {
     fileprivate var _items: [HomeProductListCell.Input] = []
     private let didSelectItem = PublishRelay<IndexPath>()
     
+    enum Constants {
+        static let cellWidth = 200
+        static let cellHeight = 250
+    }
+    
     struct Output {
         let didSelectItem: Signal<IndexPath>
     }
@@ -76,8 +81,8 @@ extension HomeProductListCollectionView: UICollectionViewDataSource,
                         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         return CGSize(
-            width: collectionView.bounds.width / 2,
-            height: collectionView.bounds.height * 0.3
+            width: Constants.cellWidth,
+            height: Constants.cellHeight
         )
     }
 }

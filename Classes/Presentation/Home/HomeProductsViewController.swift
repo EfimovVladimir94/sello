@@ -34,11 +34,17 @@ final class HomeProductsViewController: UIViewController {
         
         ui.collectionView.pin
             .below(of: ui.category)
+            .marginTop(Constants.marginTop)
             .horizontally()
-            .height(view.bounds.height)
+            .bottom()
         
-        ui.collectionView.contentInset = .make(bottom: view.bounds.height / 3)
+        ui.collectionView.contentInset = .make(bottom: Constants.contentInset)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
 
@@ -46,8 +52,7 @@ extension HomeProductsViewController: ViewType {
     typealias ViewModel = HomeProductsViewModel
     
     var bindings: ViewModel.Bindings {
-        .init(
-        )
+        .init()
     }
     
     func bind(to viewModel: ViewModel) {
@@ -114,6 +119,11 @@ extension HomeProductsViewController: ViewType {
 
 private extension HomeProductsViewController {
     
+    private enum Constants {
+        static let contentInset: CGFloat = 110
+        static let marginTop: CGFloat = 10
+    }
+    
     struct UI {
         let category: UIView
         let collectionView: HomeProductListCollectionView
@@ -121,6 +131,7 @@ private extension HomeProductsViewController {
     
     func configureUI() -> UI {
         view.backgroundColor = .white
+        view.clipsToBounds = true
         tabBarItem.title = R.string.localizable.tabbar_home()
         tabBarItem.image = R.image.home()
         tabBarItem.image?.withTintColor(.lightGray)
@@ -133,7 +144,6 @@ private extension HomeProductsViewController {
             $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 0
             $0.minimumInteritemSpacing = 0
-            $0.minimumLineSpacing = 0
         }
         
         let collectionView = HomeProductListCollectionView(
@@ -152,6 +162,6 @@ private extension HomeProductsViewController {
         return UI(
             category: category.view,
             collectionView: collectionView
-            )
+        )
     }
 }

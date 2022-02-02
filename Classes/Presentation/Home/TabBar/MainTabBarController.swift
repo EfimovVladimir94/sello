@@ -26,11 +26,6 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         configure()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setToolbarHidden(true, animated: true)
-    }
 }
 
 extension MainTabBarController: ViewType {
@@ -49,10 +44,12 @@ private extension MainTabBarController {
 
     func configure() {
         view.backgroundColor = .white
+        tabBar.isTranslucent = false
         
-        let homeController = HomeProductsScreenBuilder().build(
-            .init(),
-            transitions: self
+        let homeController = UINavigationController(
+            rootViewController: HomeProductsScreenBuilder().build(
+                .init()
+            )
         )
         
         let favouriteController = UIViewController()

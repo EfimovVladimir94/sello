@@ -1,8 +1,7 @@
 //
-//  MainHomeViewModel.swift
+//  HomeProductsViewModel.swift
 //  sello
 //
-//  Created by user on 03.01.2022.
 //
 
 import RxSwift

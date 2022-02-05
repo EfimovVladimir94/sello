@@ -52,11 +52,11 @@ private extension MainTabBarController {
             )
         )
         
-        let favouriteController = UIViewController()
-        favouriteController.view.backgroundColor = .blue
-        favouriteController.tabBarItem.title = R.string.localizable.tabbar_favourite()
-        favouriteController.tabBarItem.image = R.image.love()
-        favouriteController.tabBarItem.image?.withTintColor(.lightGray)
+        let favouriteController = MainNavigationController(
+            rootViewController: FavouritesScreenBuilder().build(
+                .init()
+            )
+        )
         
         let annonceViewController = UIViewController()
         annonceViewController.view.backgroundColor = .red
@@ -86,4 +86,5 @@ private extension MainTabBarController {
         
         selectedViewController = homeController
     }
+
 }

@@ -19,3 +19,6 @@
 "tabbar_chat" = "Сообщения";
 "tabbar_profile" = "Профиль";
 
+//MARK: - FavouritesViewController
+"tabbar_favourite_title" = "Избранное";
+

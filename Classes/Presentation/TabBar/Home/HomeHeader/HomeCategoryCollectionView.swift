@@ -1,5 +1,5 @@
 //
-//  HomeProductListCollectionView.swift
+//  CategoryCollectionView.swift
 //  sello
 //
 //
@@ -7,21 +7,21 @@
 import RxSwift
 import RxCocoa
 
-final class HomeProductListCollectionView: UICollectionView {
-    fileprivate var _items: [HomeProductListCell.Input] = []
+final class HomeCategoryCollectionView: UICollectionView {
+    fileprivate var _items: [HomeCategoryCell.Input] = []
     private let didSelectItem = PublishRelay<IndexPath>()
-    
-    enum Constants {
-        static let cellWidth = 200
-        static let cellHeight = 250
-    }
     
     struct Output {
         let didSelectItem: Signal<IndexPath>
     }
     
     struct Input {
-        let items: [HomeProductListCell.Input]
+        let items: [HomeCategoryCell.Input]
+    }
+    
+    enum Constants {
+        static let cellWidth = 80
+        static let cellHeight = 120
     }
     
     func bind(_ configuration: Input) -> Output {
@@ -32,7 +32,7 @@ final class HomeProductListCollectionView: UICollectionView {
     }
 }
 
-extension HomeProductListCollectionView: UICollectionViewDataSource,
+extension HomeCategoryCollectionView: UICollectionViewDataSource,
                                       UICollectionViewDelegate,
                                       UICollectionViewDelegateFlowLayout {
     
@@ -40,8 +40,7 @@ extension HomeProductListCollectionView: UICollectionViewDataSource,
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        
-        return _items.count
+        _items.count
     }
     
     func collectionView(
@@ -51,17 +50,18 @@ extension HomeProductListCollectionView: UICollectionViewDataSource,
         
         let item = _items[indexPath.row]
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: HomeProductListCell.self.id,
+            withReuseIdentifier: HomeCategoryCell.self.id,
             for: indexPath
-        ) as! HomeProductListCell
+        ) as? HomeCategoryCell
+        
+        guard let cell = cell else {
+            return .init()
+        }
         
         cell.configure(
             .init(
-                image: item.image,
-                title: item.title,
-                subTitle: item.subTitle,
-                description: item.description,
-                rightImage: item.rightImage
+                nameLabel: item.nameLabel,
+                iconImage: item.iconImage
             )
         )
         return cell
@@ -80,7 +80,7 @@ extension HomeProductListCollectionView: UICollectionViewDataSource,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(
+        CGSize(
             width: Constants.cellWidth,
             height: Constants.cellHeight
         )

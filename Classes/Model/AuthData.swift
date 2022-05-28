@@ -9,7 +9,7 @@ import Foundation
 
 struct AuthData: Model {
     
-    let token: String
+    let token: String?
     
     static var parser: Any {
         AuthDataParser()

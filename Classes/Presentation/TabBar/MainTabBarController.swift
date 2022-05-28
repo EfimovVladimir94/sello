@@ -4,23 +4,16 @@
 //
 //
 
-import RxSwift
-import RxCocoa
 import UIKit
-import PinLayout
 
 final class MainTabBarScreenBuilder: ScreenBuilder {
     
     typealias VC = MainTabBarController
-    
-    var dependencies: VC.ViewModel.Dependencies {
-        .init()
-    }
 }
 
+final class MainTabBarViewModel: ViewModelType, HasEmptyInitialization {}
+
 final class MainTabBarController: UITabBarController {
-    
-    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +22,7 @@ final class MainTabBarController: UITabBarController {
 }
 
 extension MainTabBarController: ViewType {
-    var bindings: MainTabBarViewModel.Bindings {
-        .init()
-    }
-    
-    func bind(to viewModel: MainTabBarViewModel) {
-    }
-    
+    func bind(to viewModel: MainTabBarViewModel) {}
     
     typealias ViewModel = MainTabBarViewModel
 }
@@ -53,16 +40,12 @@ private extension MainTabBarController {
         )
         
         let favouriteController = MainNavigationController(
-            rootViewController: FavouritesScreenBuilder().build(
-                .init()
-            )
+            rootViewController: FavouritesScreenBuilder().build(())
         )
         
-        let annonceViewController = UIViewController()
-        annonceViewController.view.backgroundColor = .red
-        annonceViewController.tabBarItem.title = R.string.localizable.tabbar_annonce()
-        annonceViewController.tabBarItem.image = R.image.plus()
-        annonceViewController.tabBarItem.image?.withTintColor(.lightGray)
+        let myProductsController = MainNavigationController(
+            rootViewController: MyProductsScreenBuilder().build(())
+        )
         
         let chatViewController = UIViewController()
         chatViewController.view.backgroundColor = .yellow
@@ -79,7 +62,7 @@ private extension MainTabBarController {
         viewControllers = [
             homeController,
             favouriteController,
-            annonceViewController,
+            myProductsController,
             chatViewController,
             profileViewController
         ]

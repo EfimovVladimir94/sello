@@ -44,9 +44,13 @@ final class ProductListCell: UICollectionViewCell {
         super.layoutSubviews()
         
         ui.imageView.pin
-            .top(Constants.spaceMargin)
-            .left(Constants.margin)
-            .size(Constants.imageSize)
+            .top()
+            .horizontally()
+            .size(
+                CGSize(
+                    width: Constants.imageWidth,
+                    height: self.contentView.frame.height
+                ))
         
         ui.rightImage.pin
             .top(Constants.spaceMargin)
@@ -60,21 +64,22 @@ final class ProductListCell: UICollectionViewCell {
                 aligned: .top
             )
             .marginLeft(Constants.margin)
-            .marginTop(Constants.margin)
+            .marginRight(Constants.margin)
             .sizeToFit(.width)
         
         ui.subTitle.pin
             .below(of: ui.title, aligned: .left)
             .marginTop(Constants.margin)
-            .right(Constants.margin)
+            .left(of: ui.rightImage)
+            .marginRight(Constants.margin)
             .sizeToFit(.width)
         
         ui.description.pin
             .below(of: ui.subTitle, aligned: .left)
             .marginTop(Constants.margin)
-            .right(Constants.margin)
+            .left(of: ui.rightImage)
+            .marginRight(Constants.margin)
             .sizeToFit(.width)
-        
         
         ui.imageView.layer.cornerRadius = 10
         
@@ -134,7 +139,7 @@ private extension ProductListCell {
 private extension ProductListCell {
     private enum Constants {
         static let iconSize: CGFloat = 24
-        static let imageSize: CGSize = .init(width: 200, height: 150)
+        static let imageWidth: CGFloat = 200
         static let margin: CGFloat = 10
         static let spaceMargin: CGFloat = 20
     }

@@ -30,7 +30,7 @@ final class HomeProductsViewController: UIViewController {
         ui.category.pin
             .top()
             .horizontally()
-            .height(HomeCategoryViewModel.Constants.height)
+            .height(Constants.height)
         
         ui.collectionView.pin
             .below(of: ui.category)
@@ -122,6 +122,7 @@ private extension HomeProductsViewController {
     private enum Constants {
         static let contentInset: CGFloat = 110
         static let marginTop: CGFloat = 10
+        static let height: CGFloat = 250
     }
     
     struct UI {

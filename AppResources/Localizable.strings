@@ -22,3 +22,8 @@
 //MARK: - FavouritesViewController
 "tabbar_favourite_title" = "Избранное";
 
+//MARK: - MyProductsViewController
+"myProducts_title" = "Мои объявления";
+"myProducts_title_botton" = "Разместить объявления";
+"myProducts_segment_active" = "Активные";
+"myProducts_segment_archive" = "Архив";

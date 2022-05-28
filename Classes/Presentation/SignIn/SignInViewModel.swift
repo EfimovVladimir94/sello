@@ -9,12 +9,12 @@ import RxCocoa
 
 struct SignInViewModel {
     
-    let disposables: Disposable
+    let validatedCredentials: Signal<Void>
 }
 
 extension SignInViewModel: ViewModelType {
     
-    typealias Routes = SignInRouter
+    typealias Routes = EmptyRouter
     
     struct Inputs {
         let login: String?
@@ -43,13 +43,28 @@ extension SignInViewModel: ViewModelType {
         router: Routes
     ) -> SignInViewModel {
         
-        let didTapSubmitButton = binding.didTapSubmitButton
-            .emit(onNext: { _ in
-            router.popToRootViewController()
-        })
+        let validatedCredentials = binding.didTapSubmitButton
+            .compactMap { credentials -> Inputs? in
+                guard let login = credentials.login,
+                      let password = credentials.password,
+                      !login.isEmpty,
+                      !password.isEmpty
+                else {
+                    return nil
+                }
+                return Inputs(login: login, password: password)
+            }
+            .flatMap {
+                dependency.authService.login(
+                    login: $0.login ?? .empty,
+                    password: $0.password ?? .empty
+                )
+                    .compactMap { $0.token }
+            }
+            .mapToVoid()
         
         return SignInViewModel(
-            disposables: CompositeDisposable(disposables: [didTapSubmitButton])
+            validatedCredentials: validatedCredentials
         )
     }
 }

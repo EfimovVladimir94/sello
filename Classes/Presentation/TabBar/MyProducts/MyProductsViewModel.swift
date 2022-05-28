@@ -1,24 +1,23 @@
 //
-//  FavouritesViewModel.swift
+//  MyProductsViewModel.swift
 //  sello
 //
-//  Created by user on 03.02.2022.
 //
 
 import RxSwift
 import RxCocoa
 
-struct FavouritesViewModel {
-    let items: Driver<[Product]>
+struct MyProductsViewModel {
+    
+    let items: Driver<[MyProducts]>
     let disposables: Disposable
 }
 
-extension FavouritesViewModel: ViewModelType {
+extension MyProductsViewModel: ViewModelType {
     
-    typealias Routes = FavouritesRouter
+    typealias Routes = MyProductsRouter
     
     struct Bindings {
-        let didTapSubmitButton: Signal<Inputs>
     }
     
     struct Dependencies {
@@ -30,14 +29,15 @@ extension FavouritesViewModel: ViewModelType {
         binding: Bindings,
         dependency: Dependencies,
         router: Routes
-    ) -> FavouritesViewModel {
+    ) -> MyProductsViewModel {
         
-        let items = dependency.productsService.loadFavourites()
+        let items = dependency.productsService.loadMyProducts()
             .asDriver(onErrorDriveWith: .just([]))
         
-        return FavouritesViewModel(
+        return MyProductsViewModel(
             items: items,
             disposables: CompositeDisposable(disposables: [])
         )
     }
 }
+

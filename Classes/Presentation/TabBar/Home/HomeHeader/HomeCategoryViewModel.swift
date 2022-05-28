@@ -14,7 +14,7 @@ struct HomeCategoryViewModel {
 
 extension HomeCategoryViewModel: ViewModelType {
     
-    typealias Routes = SignInRouter
+    typealias Routes = EmptyRouter
     
     struct Bindings {
         let didTapSubmitButton: Signal<Inputs>
@@ -40,11 +40,6 @@ extension HomeCategoryViewModel: ViewModelType {
         dependency: Dependencies,
         router: Routes
     ) -> HomeCategoryViewModel {
-        
-        _ = binding.didTapSubmitButton
-            .emit(onNext: { _ in
-            router.popToRootViewController()
-        })
         
         return HomeCategoryViewModel(
             disposables: CompositeDisposable(disposables: [])

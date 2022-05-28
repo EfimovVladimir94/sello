@@ -13,7 +13,7 @@ final class ProductListCollectionView: UICollectionView {
     private let didSelectItem = PublishRelay<IndexPath>()
     
     enum Constants {
-        static let cellHeight: CGFloat = 180
+        static let cellHeight: CGFloat = 150
     }
     
     struct Output {

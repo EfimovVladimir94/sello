@@ -14,7 +14,7 @@ struct HomeProductsViewModel {
 
 extension HomeProductsViewModel: ViewModelType {
     
-    typealias Routes = SignInRouter
+    typealias Routes = HomeRouter
     
     struct Inputs {
     }

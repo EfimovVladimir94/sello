@@ -106,8 +106,7 @@ extension SignInViewController: ViewType {
         viewModel.validatedCredentials
             .emit(onNext: { _ in
                 let vc = MainTabBarScreenBuilder().build(())
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
+                self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
     }

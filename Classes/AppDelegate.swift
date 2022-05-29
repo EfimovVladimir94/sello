@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         
-        let vc = SignInScreenBuilder.init()
-            .build(.init(
+        let vc = MainNavigationController(
+            rootViewController: SignInScreenBuilder().build(.init(
                 login: nil,
                 password: nil
             ))
+        )
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = vc

@@ -123,7 +123,6 @@ extension MyProductsViewController: ViewType {
         
         ui.segmentControl.rx.selectedSegmentIndex
             .asDriver()
-            .debug("selectedSegmentIndex")
             .drive()
             .disposed(by: disposeBag)
     }

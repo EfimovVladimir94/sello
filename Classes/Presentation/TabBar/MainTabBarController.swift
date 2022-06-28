@@ -47,11 +47,9 @@ private extension MainTabBarController {
             rootViewController: MyProductsScreenBuilder().build(())
         )
         
-        let chatViewController = UIViewController()
-        chatViewController.view.backgroundColor = .yellow
-        chatViewController.tabBarItem.title = R.string.localizable.tabbar_chat()
-        chatViewController.tabBarItem.image = R.image.chat()
-        chatViewController.tabBarItem.image?.withTintColor(.lightGray)
+        let chatViewController = MainNavigationController(
+            rootViewController: ChatMainScreenBuilder().build(())
+        )
         
         let profileViewController = UIViewController()
         profileViewController.view.backgroundColor = .green

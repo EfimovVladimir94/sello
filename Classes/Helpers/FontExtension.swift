@@ -16,6 +16,10 @@ extension UIFont {
     static var systemRegular7: UIFont {
         return .systemRegular(of: 7)
     }
+
+    static var systemRegular8: UIFont {
+        return .systemRegular(of: 8)
+    }
     
     static var systemRegular11: UIFont {
         return .systemRegular(of: 11)
@@ -28,9 +32,17 @@ extension UIFont {
     static var systemRegular13: UIFont {
         return .systemRegular(of: 13)
     }
+
+    static var systemRegular14: UIFont {
+        return .systemRegular(of: 14)
+    }
     
     static var systemRegular15: UIFont {
         return .systemRegular(of: 15)
+    }
+
+    static var systemRegular16: UIFont {
+        return .systemRegular(of: 16)
     }
     
     static var systemRegular17: UIFont {
@@ -59,5 +71,8 @@ extension UIFont {
     
     static var systemMedium150: UIFont {
         return .systemMedium(of: 150)
+    }
+    static var systemMedium15: UIFont {
+        return .systemMedium(of: 15)
     }
 }
